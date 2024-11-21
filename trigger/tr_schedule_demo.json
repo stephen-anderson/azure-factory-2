@@ -1,0 +1,17 @@
+{
+	"name": "tr_schedule_demo",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2024-11-19T12:09:00",
+				"timeZone": "GMT Standard Time"
+			}
+		}
+	}
+}

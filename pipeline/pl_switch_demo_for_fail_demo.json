@@ -1,0 +1,69 @@
+{
+	"name": "pl_switch_demo_for_fail_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.countryName",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "India",
+							"activities": [
+								{
+									"name": "Wait India",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 15
+									}
+								}
+							]
+						},
+						{
+							"value": "UK",
+							"activities": [
+								{
+									"name": "Wait UK",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 20
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Fail1",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "101",
+								"errorCode": "Cannot handle this country"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"countryName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-11-12T19:36:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

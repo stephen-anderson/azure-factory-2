@@ -1,0 +1,26 @@
+{
+	"name": "tr_tumblewindow_demo",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipeline": {
+			"pipelineReference": {
+				"referenceName": "pl_wait_demo_2",
+				"type": "PipelineReference"
+			}
+		},
+		"type": "TumblingWindowTrigger",
+		"typeProperties": {
+			"frequency": "Hour",
+			"interval": 1,
+			"startTime": "2024-11-19T15:33:00Z",
+			"delay": "00:00:00",
+			"maxConcurrency": 5,
+			"retryPolicy": {
+				"count": 5,
+				"intervalInSeconds": 30
+			},
+			"dependsOn": []
+		}
+	}
+}

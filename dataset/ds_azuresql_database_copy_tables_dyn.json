@@ -1,0 +1,17 @@
+{
+	"name": "ds_azuresql_database_copy_tables_dyn",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sja"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

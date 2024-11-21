@@ -1,0 +1,24 @@
+{
+	"name": "ds_azblob_rest_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azblob_adfdemostevea",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "rest_output.csv",
+				"container": "restoutput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

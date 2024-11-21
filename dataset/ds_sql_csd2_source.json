@@ -1,0 +1,50 @@
+{
+	"name": "ds_sql_csd2_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "az_sql_1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Emp_key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Emp_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Gender",
+				"type": "varchar"
+			},
+			{
+				"name": "Salary",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dept_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Is_Active",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employees_SCD2"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

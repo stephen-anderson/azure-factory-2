@@ -1,0 +1,39 @@
+{
+	"name": "ds_azure_sqldb_employee_new",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "az_sql_1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Gender",
+				"type": "char"
+			},
+			{
+				"name": "Salary",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dept",
+				"type": "char"
+			},
+			{
+				"name": "DOJ",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employee_new"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

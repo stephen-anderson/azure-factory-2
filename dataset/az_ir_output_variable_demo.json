@@ -1,0 +1,13 @@
+{
+	"name": "az_ir_output_variable_demo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_udemycourse_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

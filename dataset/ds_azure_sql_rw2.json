@@ -1,0 +1,13 @@
+{
+	"name": "ds_azure_sql_rw2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "az_sql_1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

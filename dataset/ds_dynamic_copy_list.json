@@ -1,0 +1,45 @@
+{
+	"name": "ds_dynamic_copy_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azblob_adfdemostevea",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Copy_config.csv",
+				"container": "dyn-copy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Source_Table",
+				"type": "String"
+			},
+			{
+				"name": "Dest_Dataset",
+				"type": "String"
+			},
+			{
+				"name": "Columns",
+				"type": "String"
+			},
+			{
+				"name": "Filter_Col",
+				"type": "String"
+			},
+			{
+				"name": "Filter_Value",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
