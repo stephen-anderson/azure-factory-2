@@ -23,7 +23,7 @@
 			],
 			"transformations": [
 				{
-					"name": "alterRow1"
+					"name": "alterRow1a"
 				}
 			],
 			"scriptLines": [
@@ -38,8 +38,8 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 alterRow(deleteIf(Dept_id==3),",
-				"     upsertIf(1==1)) ~> alterRow1",
-				"alterRow1 sink(allowSchemaDrift: true,",
+				"     upsertIf(1==1)) ~> alterRow1a",
+				"alterRow1a sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          Emp_key as integer,",
