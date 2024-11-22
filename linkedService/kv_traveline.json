@@ -1,0 +1,10 @@
+{
+	"name": "kv_traveline",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://sjaDemo.vault.azure.net/"
+		}
+	}
+}
