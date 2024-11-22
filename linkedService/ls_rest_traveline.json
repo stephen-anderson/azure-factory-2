@@ -1,0 +1,12 @@
+{
+	"name": "ls_rest_traveline",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "http://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
