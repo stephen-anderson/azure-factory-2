@@ -1,0 +1,12 @@
+{
+	"name": "ds_traveline_rest_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_rest_traveline",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
