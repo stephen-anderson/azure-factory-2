@@ -29,6 +29,9 @@
 		"ls_onprem_udemycourse_db_password": {
 			"value": ""
 		},
+		"ls_rest_traveline_password": {
+			"value": ""
+		},
 		"ls_stevea_sqlserver_password": {
 			"value": ""
 		},
@@ -80,6 +83,12 @@
 		"ls_rest_service_input_properties_typeProperties_url": {
 			"value": "https://dummyjson.com/c/effa-b402-4759-9713"
 		},
+		"ls_rest_traveline_properties_typeProperties_url": {
+			"value": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+		},
+		"ls_rest_traveline_properties_typeProperties_userName": {
+			"value": "TravelineAPI689"
+		},
 		"ls_stevea_sqlserver_properties_typeProperties_server": {
 			"value": "stevea"
 		},
@@ -91,9 +100,6 @@
 		},
 		"tr_storageevent_demo_properties_typeProperties_scope": {
 			"value": "/subscriptions/8632adbe-0938-47d7-8280-1c9f4785d918/resourceGroups/ADF-demo/providers/Microsoft.Storage/storageAccounts/adfdemostevea"
-		},
-		"ls_rest_traveline_properties_typeProperties_url": {
-			"value": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
 		},
 		"containerUri": {
 			"value": ""

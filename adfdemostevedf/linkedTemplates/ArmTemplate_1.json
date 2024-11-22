@@ -10,16 +10,32 @@
 		"tr_storageevent_demo_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/8632adbe-0938-47d7-8280-1c9f4785d918/resourceGroups/ADF-demo/providers/Microsoft.Storage/storageAccounts/adfdemostevea"
-		},
-		"ls_rest_traveline_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_schedule_demo')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 5,
+						"startTime": "2024-11-19T12:09:00",
+						"timeZone": "GMT Standard Time"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tr_storageevent_demo')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
@@ -67,21 +83,6 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_rest_traveline')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('ls_rest_traveline_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
 			},
 			"dependsOn": []
 		},

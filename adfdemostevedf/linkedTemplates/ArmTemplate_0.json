@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_azblob_adfdemostevea'"
 		},
+		"ls_rest_traveline_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_rest_traveline'"
+		},
 		"MongoDbAtlas1_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "blog"
@@ -70,6 +74,14 @@
 		"ls_rest_service_input_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dummyjson.com/c/effa-b402-4759-9713"
+		},
+		"ls_rest_traveline_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+		},
+		"ls_rest_traveline_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "TravelineAPI689"
 		}
 	},
 	"variables": {
@@ -771,6 +783,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ls_rest_traveline')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('ls_rest_traveline_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('ls_rest_traveline_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('ls_rest_traveline_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/tr_demo')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -793,26 +825,6 @@
 								16
 							]
 						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_schedule_demo')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 5,
-						"startTime": "2024-11-19T12:09:00",
-						"timeZone": "GMT Standard Time"
 					}
 				}
 			},

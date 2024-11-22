@@ -13,6 +13,80 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/df_scd2_demo_step2')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_scd2_input",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_sql_csd2_source",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Emp_id as integer,",
+						"          Name as string,",
+						"          Gender as string,",
+						"          Salary as integer,",
+						"          Dept_id as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 derive(Is_Active = 'Y') ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          Emp_key as integer,",
+						"          Emp_id as integer,",
+						"          Name as string,",
+						"          Gender as string,",
+						"          Salary as integer,",
+						"          Dept_id as integer,",
+						"          Is_Active as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Emp_id,",
+						"          Name,",
+						"          Gender,",
+						"          Salary,",
+						"          Dept_id,",
+						"          Is_Active",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/df_surrogate_key')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -98,71 +172,6 @@
 						"     skipDuplicateMapOutputs: true) ~> sink1"
 					]
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_traveline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "POST",
-								"requestBody": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ds_traveline_rest_source",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ds_traveline_out_csv",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
 			},
 			"dependsOn": []
 		},
@@ -586,7 +595,9 @@
 				"annotations": [],
 				"lastPublishTime": "2024-11-20T14:32:44Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_scd2_demo_step2')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pl_demo_parameters')]",

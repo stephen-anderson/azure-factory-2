@@ -39,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_onprem_udemycourse_db'"
 		},
+		"ls_rest_traveline_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_rest_traveline'"
+		},
 		"ls_stevea_sqlserver_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_stevea_sqlserver'"
@@ -107,6 +111,14 @@
 			"type": "string",
 			"defaultValue": "https://dummyjson.com/c/effa-b402-4759-9713"
 		},
+		"ls_rest_traveline_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+		},
+		"ls_rest_traveline_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "TravelineAPI689"
+		},
 		"ls_stevea_sqlserver_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "stevea"
@@ -122,10 +134,6 @@
 		"tr_storageevent_demo_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/8632adbe-0938-47d7-8280-1c9f4785d918/resourceGroups/ADF-demo/providers/Microsoft.Storage/storageAccounts/adfdemostevea"
-		},
-		"ls_rest_traveline_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
 		},
 		"containerUri": {
 			"type": "string",
@@ -172,6 +180,9 @@
 					"ls_azblob_adfdemostevea_connectionString": {
 						"value": "[parameters('ls_azblob_adfdemostevea_connectionString')]"
 					},
+					"ls_rest_traveline_password": {
+						"value": "[parameters('ls_rest_traveline_password')]"
+					},
 					"MongoDbAtlas1_properties_typeProperties_database": {
 						"value": "[parameters('MongoDbAtlas1_properties_typeProperties_database')]"
 					},
@@ -201,6 +212,12 @@
 					},
 					"ls_rest_service_input_properties_typeProperties_url": {
 						"value": "[parameters('ls_rest_service_input_properties_typeProperties_url')]"
+					},
+					"ls_rest_traveline_properties_typeProperties_url": {
+						"value": "[parameters('ls_rest_traveline_properties_typeProperties_url')]"
+					},
+					"ls_rest_traveline_properties_typeProperties_userName": {
+						"value": "[parameters('ls_rest_traveline_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -222,9 +239,6 @@
 					},
 					"tr_storageevent_demo_properties_typeProperties_scope": {
 						"value": "[parameters('tr_storageevent_demo_properties_typeProperties_scope')]"
-					},
-					"ls_rest_traveline_properties_typeProperties_url": {
-						"value": "[parameters('ls_rest_traveline_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -265,30 +279,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"AzureSqlDatabase1_password": {
-						"value": "[parameters('AzureSqlDatabase1_password')]"
-					},
-					"ls_onprem_udemycourse_db_password": {
-						"value": "[parameters('ls_onprem_udemycourse_db_password')]"
-					},
-					"AzureSqlDatabase1_properties_typeProperties_server": {
-						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
-					},
-					"AzureSqlDatabase1_properties_typeProperties_database": {
-						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
-					},
-					"AzureSqlDatabase1_properties_typeProperties_userName": {
-						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
-					},
-					"ls_onprem_udemycourse_db_properties_typeProperties_server": {
-						"value": "[parameters('ls_onprem_udemycourse_db_properties_typeProperties_server')]"
-					},
-					"ls_onprem_udemycourse_db_properties_typeProperties_database": {
-						"value": "[parameters('ls_onprem_udemycourse_db_properties_typeProperties_database')]"
-					},
-					"ls_onprem_udemycourse_db_properties_typeProperties_userName": {
-						"value": "[parameters('ls_onprem_udemycourse_db_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -310,8 +300,32 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
+					"ls_onprem_udemycourse_db_password": {
+						"value": "[parameters('ls_onprem_udemycourse_db_password')]"
+					},
 					"ls_stevea_sqlserver_password": {
 						"value": "[parameters('ls_stevea_sqlserver_password')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"ls_onprem_udemycourse_db_properties_typeProperties_server": {
+						"value": "[parameters('ls_onprem_udemycourse_db_properties_typeProperties_server')]"
+					},
+					"ls_onprem_udemycourse_db_properties_typeProperties_database": {
+						"value": "[parameters('ls_onprem_udemycourse_db_properties_typeProperties_database')]"
+					},
+					"ls_onprem_udemycourse_db_properties_typeProperties_userName": {
+						"value": "[parameters('ls_onprem_udemycourse_db_properties_typeProperties_userName')]"
 					},
 					"ls_stevea_sqlserver_properties_typeProperties_server": {
 						"value": "[parameters('ls_stevea_sqlserver_properties_typeProperties_server')]"
