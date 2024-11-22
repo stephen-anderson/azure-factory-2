@@ -13,7 +13,7 @@
 		},
 		"ls_rest_traveline_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "http://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
 		}
 	},
 	"variables": {

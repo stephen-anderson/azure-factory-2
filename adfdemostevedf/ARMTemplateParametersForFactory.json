@@ -93,7 +93,7 @@
 			"value": "/subscriptions/8632adbe-0938-47d7-8280-1c9f4785d918/resourceGroups/ADF-demo/providers/Microsoft.Storage/storageAccounts/adfdemostevea"
 		},
 		"ls_rest_traveline_properties_typeProperties_url": {
-			"value": "http://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+			"value": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
 		}
 	}
 }
