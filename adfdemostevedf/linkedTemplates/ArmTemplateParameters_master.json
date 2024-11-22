@@ -1,0 +1,105 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdemostevedf"
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"MongoDbAtlas1_connectionString": {
+			"value": ""
+		},
+		"az_sql_1_password": {
+			"value": ""
+		},
+		"ls_adfdemostevedlg_accountKey": {
+			"value": ""
+		},
+		"ls_adfdemostevedlg_product_csv_connectionString": {
+			"value": ""
+		},
+		"ls_adsl_output_accountKey": {
+			"value": ""
+		},
+		"ls_azblob_adfdemostevea_connectionString": {
+			"value": ""
+		},
+		"ls_onprem_udemycourse_db_password": {
+			"value": ""
+		},
+		"ls_stevea_sqlserver_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "stevea"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "Udemy_azure_course"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"MongoDbAtlas1_properties_typeProperties_database": {
+			"value": "blog"
+		},
+		"REST_ee_properties_typeProperties_url": {
+			"value": "http://dummy.restapiexample.com/api/v1/employees"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "http://dummy.restapiexample.com/api/v1/employees"
+		},
+		"az_sql_1_properties_typeProperties_server": {
+			"value": "adf-demo-sql-server-sja.database.windows.net"
+		},
+		"az_sql_1_properties_typeProperties_database": {
+			"value": "adf-demo-sql-db"
+		},
+		"az_sql_1_properties_typeProperties_userName": {
+			"value": "serveradmin"
+		},
+		"ds_rest_input_ee_properties_typeProperties_url": {
+			"value": "http://dummy.restapiexample.com/api/v1/employees"
+		},
+		"ls_adfdemostevedlg_properties_typeProperties_url": {
+			"value": "https://adfdemostevedlg.dfs.core.windows.net/"
+		},
+		"ls_adsl_output_properties_typeProperties_url": {
+			"value": "https://adfdemostevedlgout.dfs.core.windows.net/"
+		},
+		"ls_onprem_udemycourse_db_properties_typeProperties_server": {
+			"value": "stevea"
+		},
+		"ls_onprem_udemycourse_db_properties_typeProperties_database": {
+			"value": "Udemy_azure_course"
+		},
+		"ls_onprem_udemycourse_db_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"ls_rest_service_input_properties_typeProperties_url": {
+			"value": "https://dummyjson.com/c/effa-b402-4759-9713"
+		},
+		"ls_stevea_sqlserver_properties_typeProperties_server": {
+			"value": "stevea"
+		},
+		"ls_stevea_sqlserver_properties_typeProperties_database": {
+			"value": "AdventureWorks2022"
+		},
+		"ls_stevea_sqlserver_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"tr_storageevent_demo_properties_typeProperties_scope": {
+			"value": "/subscriptions/8632adbe-0938-47d7-8280-1c9f4785d918/resourceGroups/ADF-demo/providers/Microsoft.Storage/storageAccounts/adfdemostevea"
+		},
+		"ls_rest_traveline_properties_typeProperties_url": {
+			"value": "http://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
