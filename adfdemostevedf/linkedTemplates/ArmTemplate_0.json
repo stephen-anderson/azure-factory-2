@@ -63,6 +63,10 @@
 			"type": "string",
 			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		},
+		"kv_traveline_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://sjaDemo.vault.azure.net/"
+		},
 		"ls_adfdemostevedlg_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adfdemostevedlg.dfs.core.windows.net/"
@@ -77,7 +81,7 @@
 		},
 		"ls_rest_traveline_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/"
 		},
 		"ls_rest_traveline_properties_typeProperties_userName": {
 			"type": "string",
@@ -708,6 +712,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/kv_traveline')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('kv_traveline_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ls_adfdemostevedlg')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -797,34 +814,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('ls_rest_traveline_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_demo')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2024-11-09T16:16:00",
-						"timeZone": "GMT Standard Time",
-						"schedule": {
-							"minutes": [
-								30
-							],
-							"hours": [
-								16
-							]
-						}
 					}
 				}
 			},

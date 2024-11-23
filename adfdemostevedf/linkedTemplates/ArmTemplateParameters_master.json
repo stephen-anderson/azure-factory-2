@@ -65,6 +65,9 @@
 		"ds_rest_input_ee_properties_typeProperties_url": {
 			"value": "http://dummy.restapiexample.com/api/v1/employees"
 		},
+		"kv_traveline_properties_typeProperties_baseUrl": {
+			"value": "https://sjaDemo.vault.azure.net/"
+		},
 		"ls_adfdemostevedlg_properties_typeProperties_url": {
 			"value": "https://adfdemostevedlg.dfs.core.windows.net/"
 		},
@@ -84,7 +87,7 @@
 			"value": "https://dummyjson.com/c/effa-b402-4759-9713"
 		},
 		"ls_rest_traveline_properties_typeProperties_url": {
-			"value": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+			"value": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/"
 		},
 		"ls_rest_traveline_properties_typeProperties_userName": {
 			"value": "TravelineAPI689"

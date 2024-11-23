@@ -87,6 +87,10 @@
 			"type": "string",
 			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		},
+		"kv_traveline_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://sjaDemo.vault.azure.net/"
+		},
 		"ls_adfdemostevedlg_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adfdemostevedlg.dfs.core.windows.net/"
@@ -113,7 +117,7 @@
 		},
 		"ls_rest_traveline_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/"
 		},
 		"ls_rest_traveline_properties_typeProperties_userName": {
 			"type": "string",
@@ -2927,7 +2931,8 @@
 								"type": "RestSource",
 								"httpRequestTimeout": "00:01:40",
 								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
+								"requestMethod": "POST",
+								"requestBody": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
 								"paginationRules": {
 									"supportRFC5988": "true"
 								}
@@ -2959,6 +2964,33 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Web1",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {},
+							"url": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1",
+							"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
+							"authentication": {
+								"type": "Basic",
+								"username": "TravelineAPI689",
+								"password": {
+									"type": "SecureString",
+									"value": "**********"
+								}
+							}
+						}
 					}
 				],
 				"policy": {
@@ -5545,7 +5577,7 @@
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {
-					"relativeUrl": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+					"relativeUrl": "/nextbuses/1.0/1"
 				},
 				"schema": []
 			},
@@ -5709,6 +5741,19 @@
 					"url": "[parameters('ds_rest_input_ee_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": false,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/kv_traveline')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('kv_traveline_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []

@@ -61,6 +61,24 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_traveline_rest_source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_rest_traveline",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": "/nextbuses/1.0/1"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1890,7 +1908,8 @@
 								"type": "RestSource",
 								"httpRequestTimeout": "00:01:40",
 								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
+								"requestMethod": "POST",
+								"requestBody": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
 								"paginationRules": {
 									"supportRFC5988": "true"
 								}
@@ -1922,6 +1941,33 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Web1",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {},
+							"url": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1",
+							"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
+							"authentication": {
+								"type": "Basic",
+								"username": "TravelineAPI689",
+								"password": {
+									"type": "SecureString",
+									"value": "**********"
+								}
+							}
+						}
 					}
 				],
 				"policy": {
@@ -1929,70 +1975,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_validation_demo')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Validation1",
-						"type": "Validation",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "DelimitedText8",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"timeout": "0.00:00:15",
-							"sleep": 10,
-							"minimumSize": 1
-						}
-					},
-					{
-						"name": "wait works",
-						"type": "Wait",
-						"dependsOn": [
-							{
-								"activity": "Validation1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 20
-						}
-					},
-					{
-						"name": "wait fails",
-						"type": "Wait",
-						"dependsOn": [
-							{
-								"activity": "Validation1",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 20
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2024-11-12T17:19:55Z"
-			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_traveline_rest_source')]"
+			]
 		}
 	]
 }

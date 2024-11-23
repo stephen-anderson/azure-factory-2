@@ -87,6 +87,10 @@
 			"type": "string",
 			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		},
+		"kv_traveline_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://sjaDemo.vault.azure.net/"
+		},
 		"ls_adfdemostevedlg_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adfdemostevedlg.dfs.core.windows.net/"
@@ -113,7 +117,7 @@
 		},
 		"ls_rest_traveline_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1"
+			"defaultValue": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/"
 		},
 		"ls_rest_traveline_properties_typeProperties_userName": {
 			"type": "string",
@@ -203,6 +207,9 @@
 					},
 					"ds_rest_input_ee_properties_typeProperties_url": {
 						"value": "[parameters('ds_rest_input_ee_properties_typeProperties_url')]"
+					},
+					"kv_traveline_properties_typeProperties_baseUrl": {
+						"value": "[parameters('kv_traveline_properties_typeProperties_baseUrl')]"
 					},
 					"ls_adfdemostevedlg_properties_typeProperties_url": {
 						"value": "[parameters('ls_adfdemostevedlg_properties_typeProperties_url')]"

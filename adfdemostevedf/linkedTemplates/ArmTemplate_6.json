@@ -13,6 +13,124 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/df_scd2_demo')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_sql_csd2_source",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						},
+						{
+							"dataset": {
+								"referenceName": "ds_scd2_input",
+								"type": "DatasetReference"
+							},
+							"name": "source2"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_sql_csd2_source",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "exists1"
+						},
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "alterRow1"
+						},
+						{
+							"name": "select1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Emp_key as integer,",
+						"          Emp_id as integer,",
+						"          Name as string,",
+						"          Gender as string,",
+						"          Salary as integer,",
+						"          Dept_id as integer,",
+						"          Is_Active as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> source1",
+						"source(output(",
+						"          Emp_id as integer,",
+						"          Name as string,",
+						"          Gender as string,",
+						"          Salary as integer,",
+						"          Dept_id as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source2",
+						"source1, source2 exists(source1@Emp_id == source2@Emp_id,",
+						"     negate:false,",
+						"     broadcast: 'auto')~> exists1",
+						"exists1 derive(Is_Active = 'N') ~> derivedColumn1",
+						"derivedColumn1 alterRow(updateIf(1==1)) ~> alterRow1",
+						"alterRow1 select(mapColumn(",
+						"          Emp_id,",
+						"          Name,",
+						"          Gender,",
+						"          Salary,",
+						"          Dept_id,",
+						"          Is_Active",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          Emp_key as integer,",
+						"          Emp_id as integer,",
+						"          Name as string,",
+						"          Gender as string,",
+						"          Salary as integer,",
+						"          Dept_id as integer,",
+						"          Is_Active as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:false,",
+						"     updateable:true,",
+						"     upsertable:false,",
+						"     keys:['Emp_id'],",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Emp_id,",
+						"          Name,",
+						"          Gender,",
+						"          Salary,",
+						"          Dept_id,",
+						"          Is_Active",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/df_scd2_demo_step2')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -596,6 +714,7 @@
 				"lastPublishTime": "2024-11-20T14:32:44Z"
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/df_scd2_demo')]",
 				"[concat(variables('factoryId'), '/dataflows/df_scd2_demo_step2')]"
 			]
 		},
