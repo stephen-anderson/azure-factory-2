@@ -19,7 +19,8 @@
 						"type": "RestSource",
 						"httpRequestTimeout": "00:01:40",
 						"requestInterval": "00.00:00:00.010",
-						"requestMethod": "GET",
+						"requestMethod": "POST",
+						"requestBody": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
 						"paginationRules": {
 							"supportRFC5988": "true"
 						}
@@ -49,6 +50,28 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://TravelineAPI689:oV2raeli@nextbus.mxdata.co.uk/nextbuses/1.0/1",
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Siri version=\"1.0\" xmlns=\"http://www.siri.org.uk/\">\n <ServiceRequest>\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <RequestorRef>TravelineAPI101</RequestorRef>\n <StopMonitoringRequest version=\"1.0\">\n <RequestTimestamp>2024-11-21T19:03:55.136Z</RequestTimestamp>\n <MessageIdentifier>12345</MessageIdentifier>\n <MonitoringRef>020035811</MonitoringRef>\n </StopMonitoringRequest>\n </ServiceRequest>\n</Siri>",
+					"authentication": {
+						"type": "Basic",
+						"username": "TravelineAPI689"
+					}
+				}
 			}
 		],
 		"annotations": []
